@@ -49,7 +49,7 @@ function Login() {
   });
 
   return (
-    <div className="h-screen flex bg-gray-bg1">
+    <div data-testid="Login" className="h-screen flex bg-gray-bg1">
       <div className="w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
         <h1 className="text-2xl font-medium text-primary mt-4 mb-12 text-center">
           Log in to your account 🔐
@@ -58,6 +58,7 @@ function Login() {
           <div className="space-y-4">
             <input
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+              data-testid="email-input"
               id="email"
               type="email"
               placeholder="Email"
@@ -69,6 +70,7 @@ function Login() {
             {formik.errors.email ? <div>{formik.errors.email} </div> : null}
             <input
               className="border-b border-gray-300 w-full px-2 h-8 rounded focus:border-blue-500"
+              data-testid="password-input"
               id="password"
               type="password"
               placeholder="Password"
