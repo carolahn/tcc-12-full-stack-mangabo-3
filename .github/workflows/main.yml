@@ -61,6 +61,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY_PEM }}
           script: |
               sudo su
-              git clone https://github.com/carolahn/tcc-12-full-stack-mangabo-3.git .
+              git clone https://github.com/carolahn/tcc-12-full-stack-mangabo-3.git
+              cd tcc-12-full-stack-mangabo-3
               export COMPOSE_FILE=docker-compose.prod.yml
               sudo docker-compose up --build -d
