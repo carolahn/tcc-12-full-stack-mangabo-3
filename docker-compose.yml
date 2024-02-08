@@ -7,13 +7,13 @@ services:
     restart: on-failure
     image: jonasal/nginx-certbot:latest
     environment:
-      CERTBOT_EMAIL: ${{ secrets.NGINX_certbot_email }}
-      STAGING: ${{ secrets.NGINX_STAGING }}
-      DHPARAM_SIZE: ${{ secrets.NGINX_DHPARAM }}
-      RSA_KEY_SIZE: ${{ secrets.NGINX_RSA_KEY_SIZE }}
-      ELLIPTIC_CURVE: ${{ secrets.NGINX_ELLIPTIC_CURVE }}
-      USE_ECDSA: ${{ secrets.NGINX_USE_ECDSA }}
-      RENEWAL_INTERVAL: ${{ secrets.NGINX_RENEWAL_INTERVAL}}
+      CERTBOT_EMAIL: $${{ secrets.NGINX_certbot_email }}
+      STAGING: $${{ secrets.NGINX_STAGING }}
+      DHPARAM_SIZE: $${{ secrets.NGINX_DHPARAM }}
+      RSA_KEY_SIZE: $${{ secrets.NGINX_RSA_KEY_SIZE }}
+      ELLIPTIC_CURVE: $${{ secrets.NGINX_ELLIPTIC_CURVE }}
+      USE_ECDSA: $${{ secrets.NGINX_USE_ECDSA }}
+      RENEWAL_INTERVAL: $${{ secrets.NGINX_RENEWAL_INTERVAL}}
     volumes:
       - nginx_secrets:/etc/letsencrypt
       - ./nginx/user_conf.d:/etc/nginx/user_conf.d
@@ -27,7 +27,7 @@ services:
     container_name: react_app
     restart: on-failure
     environment:
-      REACT_APP_API_URL: ${{ secrets.EC2_HOST_DNS }}
+      REACT_APP_API_URL: $${{ secrets.EC2_HOST_DNS }}
     build:
       context: .
       dockerfile: Dockerfile.prod
