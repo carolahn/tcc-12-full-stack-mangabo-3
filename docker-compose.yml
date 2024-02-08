@@ -5,7 +5,7 @@ services:
   nginx:
     container_name: core_web
     restart: on-failure
-    image: jonasal/nginx-certbot:latest
+    image: nginx:stable
     environment:
       CERTBOT_EMAIL: $${{ secrets.NGINX_certbot_email }}
       STAGING: $${{ secrets.NGINX_STAGING }}
@@ -15,11 +15,9 @@ services:
       USE_ECDSA: $${{ secrets.NGINX_USE_ECDSA }}
       RENEWAL_INTERVAL: $${{ secrets.NGINX_RENEWAL_INTERVAL}}
     volumes:
-      - nginx_secrets:/etc/letsencrypt
       - ./nginx/user_conf.d:/etc/nginx/user_conf.d
     ports:
       - "80:80"
-      - "443:443"
     depends_on:
       - web
 
