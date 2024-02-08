@@ -25,6 +25,7 @@ jobs:
     env:
         EC2_HOST_DNS: ${{ secrets.EC2_HOST_DNS }}
         CERTBOT_EMAIL: ${{ secrets.CERTBOT_EMAIL }}
+        REACT_APP_API_URL: ${{ secrets.EC2_HOST_DNS }}
     steps:
       - name: Install docker on EC2
         uses: appleboy/ssh-action@master
@@ -59,5 +60,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY_PEM }}
           script: |
-              cd ~/.scripts
-              ./docker-deploy.sh
+              sudo su
+              git clone .
+              export COMPOSE_FILE=docker-compose.prod.yml
+              sudo docker-compose up --build -d
